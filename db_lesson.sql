@@ -1,4 +1,4 @@
-*Q1*
+-- *Q1*
 CREATE TABLE departments(
   department_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR (20) NOT NULL,
@@ -6,12 +6,11 @@ CREATE TABLE departments(
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-
-*Q2*
+-- *Q2*
 ALTER TABLE people ADD department_id INT UNSIGNED AFTER email;
 
 
-*Q3*
+-- *Q3*
 INSERT INTO departments (name) 
 VALUES
 ('営業'),
@@ -47,42 +46,42 @@ VALUES
 (16,'昼下がりに美術館に行った');
 
 
-*Q4*
+-- *Q4*
 UPDATE people 
 SET 
 department_id = ELT(FIELD (person_id, 1,2,3,4,6), '1','2','3','4','5')
 WHERE person_id IN (1,2,3,4,6)
 
 
-*Q5*
+-- *Q5*
 SELECT name, age FROM people WHERE gender = 1 ORDER BY age DESC;
 
 
-*Q6*
+-- *Q6*
 peopleというテーブルでdepartment_idが1のレコードを、
 name、email、ageの３つのカラムに絞って、作成時刻の昇順で表示するSQL文
 
 
-*Q7*
-SELECT name FROM people WHERE 20<= age AND 30> age AND gender = 2;
+-- *Q7*
+SELECT name FROM people WHERE 
+20<= age AND 30> age AND gender = 2 or
+40<= age AND 50> age AND gender = 1;
 
-SELECT name FROM people WHERE 40<= age AND 50> age AND gender = 1;
 
-
-*Q8*
+-- *Q8*
 SELECT * FROM people WHERE department_id = 1 ORDER BY age ASC;
 
 
-*Q9*
+-- *Q9*
 SELECT AVG(age) AS average_age FROM people WHERE department_id = 2 AND gender = 2;
 
 
-*Q10*
+-- *Q10*
 SELECT p.department_id, p.name, r.content
 FROM people p JOIN reports r ON p.person_id = r.person_id;
 
 
-*Q11*
+-- *Q11*
 SELECT
   p.name
 FROM
